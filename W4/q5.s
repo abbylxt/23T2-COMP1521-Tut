@@ -3,10 +3,15 @@
 
 main:
 main__prologue:
-
+        begin   
+        push	$ra
 main__body:
+        
 
 main__epilogue:
+        pop	$ra
+        end
+        jr	$ra
 
 
 
