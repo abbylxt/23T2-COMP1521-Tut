@@ -3,16 +3,11 @@
 
 main:
 main__prologue:
-        begin   
-        push	$ra
+
 main__body:
         
 
 main__epilogue:
-        pop	$ra
-        end
-        jr	$ra
-
 
 
 sum4:
@@ -26,8 +21,8 @@ sum4:
 	#    - $v0: int
 	#
 	# Frame:    [$ra, $s0, $s1, $s2]
-	# Uses:     [$t0, $s0, $s1, $s2, $a0, $a1, $a2, $a3, $v0]
-	# Clobbers: [$a0, $a1, $a2, $a3, $v0, $t0]
+	# Uses:     [$ra, $s0, $s1, $s2, $t0, $a0, $a1, $a2, $a3, $v0]
+	# Clobbers: [$t0, $a0, $a1, $a2, $a3, $v0]
 	#
 	# Locals:
 	# $s0 = res1
@@ -38,7 +33,7 @@ sum4:
 	# Structure:
 	#   sum4
 	#   -> [prologue]
-	#       -> body
+	#   -> body
 	#   -> [epilogue]
 	#
 sum4__prologue:
@@ -49,11 +44,10 @@ sum4__prologue:
 	push	$s2
 
 sum4__body:
-
 	move	$s1, $a2
 	move	$s2, $a3
 
-	jal	sum2		# int res1 = sum2(a, b);
+	jal	sum2			# int res1 = sum2(a, b);
 	move	$s0, $v0
 
 	move	$a0, $s1
@@ -64,7 +58,7 @@ sum4__body:
 	move	$a0, $s0
 	move	$a1, $t0
 	jal	sum2
-	# note return value is already $v0
+	# return value already in $v0
 
 sum4__epilogue:
 	pop	$s2
@@ -74,7 +68,6 @@ sum4__epilogue:
 	end
 
 	jr	$ra
-
 
 sum2:
 
