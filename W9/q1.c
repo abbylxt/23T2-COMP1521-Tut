@@ -14,14 +14,11 @@ int main(void) {
 
     const char *diary_path = ".diary"; 
 
-    // printf("%s%s \n", home_path, diary_path);
-
     int total_len = strlen(home_path) + strlen(diary_path) + 2;
 
     char *path = malloc(total_len);
 
     snprintf(path, total_len, "%s/%s", home_path, diary_path);
-    // printf("%s\n", path);
 
     FILE *in = fopen(path, "r");
     
